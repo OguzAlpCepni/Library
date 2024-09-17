@@ -6,6 +6,7 @@ import com.book.bookservice.exception.BookNotFoundException;
 import com.book.bookservice.model.Book;
 import com.book.bookservice.repository.BookRepository;
 import com.book.bookservice.service.abstracts.BookService;
+import com.book.bookservice.service.helper.BookHelper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,9 +14,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class BookManager implements BookService {
+
     private final BookRepository bookRepository;
-    public BookManager(final BookRepository bookRepository) {
+    private final BookHelper bookHelper;
+
+    public BookManager(final BookRepository bookRepository,final BookHelper bookHelper) {
         this.bookRepository = bookRepository;
+        this.bookHelper = bookHelper;
     }
 
     @Override
@@ -30,20 +35,13 @@ public class BookManager implements BookService {
                     .pressName(book.getPressName())
                     .isbn(book.getIsbn())
         }*/
-
-        return bookRepository.findAll().stream().map(
-                book ->BookDto.builder()
-                        .bookId(book.getBookId())
-                        .title(book.getTitle())
-                        .bookYear(book.getBookYear())
-                        .author(book.getAuthor())
-                        .pressName(book.getPressName())
-                        .isbn(book.getIsbn())
-                        .build()).collect(Collectors.toList());
+        List<Book> books = bookRepository.findAll();
+        return bookHelper.mapToBookDto(books);
     }
 
     @Override
     public BookIdDto findBookById(String isbn) {
+
         return bookRepository.findByIsbn(isbn).map(
                 book -> BookIdDto.builder()
                         .bookId(book.getBookId())
