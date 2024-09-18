@@ -28,7 +28,10 @@ public class LibraryManager implements LibraryService {
     public LibraryDto getAllBookLibraryById(String id) {
         Library library = libraryRepository.findById(id).orElseThrow(()->new LibraryNotFoundException("Library could not found"));
 
-        LibraryDto libraryDto = new LibraryDto(library.getLibraryId(),library.getUserBook().stream().map(bookServiceClient::getBookById)
+        LibraryDto libraryDto = new LibraryDto(library.getLibraryId(),library
+                .getUserBook()
+                .stream()
+                .map(bookServiceClient::getBookById)
                         .map(ResponseEntity::getBody)
                         .collect(Collectors.toList()));
 

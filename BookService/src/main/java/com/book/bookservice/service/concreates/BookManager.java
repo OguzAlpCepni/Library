@@ -40,9 +40,9 @@ public class BookManager implements BookService {
     }
 
     @Override
-    public BookIdDto findBookById(String isbn) {
+    public BookIdDto findBookIsbn(String isbn) {
 
-        return bookRepository.findByIsbn(isbn).map(
+        return bookRepository.getBookByIsbn(isbn).map(
                 book -> BookIdDto.builder()
                         .bookId(book.getBookId())
                         .isbn(isbn).build()).orElseThrow(() -> new BookNotFoundException("book could not found by isbn: "+ isbn));

@@ -9,6 +9,6 @@ public interface BookService {
 
 
     public List<BookDto> getAllBooks();
-    public BookIdDto findBookById(String isbn);
+    public BookIdDto findBookIsbn(String isbn);
     public BookDto findBookDetaildById(String id);
 }

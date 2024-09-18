@@ -25,6 +25,7 @@ public class LibraryController {
     public ResponseEntity<LibraryDto> createLibrary() {
         return ResponseEntity.ok(libraryService.createLibrary());
     }
+
     @PutMapping
     public ResponseEntity<Void> addBookToLibrary(@RequestBody AddBookRequest addBookRequest) {
         libraryService.addBookToLibrary(addBookRequest);
