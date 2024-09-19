@@ -1,14 +1,17 @@
 package com.book.bookservice.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "book")
 @Data
-@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book {
 
     @Id
