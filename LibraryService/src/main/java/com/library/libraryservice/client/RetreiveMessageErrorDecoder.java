@@ -6,18 +6,19 @@ import feign.Response;
 import feign.codec.ErrorDecoder;
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
+
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-@Component
+
+
 public class RetreiveMessageErrorDecoder implements ErrorDecoder {
-    private final ErrorDecoder errorDecoder= new Default();
+
+    private final ErrorDecoder errorDecoder = new Default();
 
     @Override
     public Exception decode(String methodKey, Response response) {
-
         ExceptionMessage message = null;
         try (InputStream body = response.body().asInputStream()){
             message = new ExceptionMessage((String) response.headers().get("date").toArray()[0],
@@ -35,6 +36,5 @@ public class RetreiveMessageErrorDecoder implements ErrorDecoder {
             default:
                 return errorDecoder.decode(methodKey, response);
         }
-
     }
 }
