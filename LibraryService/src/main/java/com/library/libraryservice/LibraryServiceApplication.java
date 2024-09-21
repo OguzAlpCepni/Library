@@ -18,11 +18,11 @@ public class LibraryServiceApplication {
 		SpringApplication.run(LibraryServiceApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	public ErrorDecoder errorDecoder() {
 		return new RetreiveMessageErrorDecoder();
 	}
 
 	@Bean
-	Logger.Level feignLoggerLevel() {return Logger.Level.FULL;}
+	Logger.Level feignLoggerLevel() {return Logger.Level.FULL;}*/
 }

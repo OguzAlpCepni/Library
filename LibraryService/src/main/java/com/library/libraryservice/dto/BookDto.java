@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Builder
 public class BookDto {
@@ -17,4 +17,20 @@ public class BookDto {
     private String author;
     private String pressName;
     private String isbn;
+
+   
+
+    public BookDto(String bookId, String title, int bookYear, String pressName, String author, String isbn) {
+        this.bookId = bookId;
+        this.title = title;
+        this.bookYear = bookYear;
+        this.pressName = pressName;
+        this.author = author;
+        this.isbn = isbn;
+    }
+
+    public BookDto(BookIdDto bookIdDto) {
+        this.bookId = bookIdDto.getBookId();
+        this.isbn = bookIdDto.getIsbn();
+    }
 }
