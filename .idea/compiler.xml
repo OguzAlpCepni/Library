@@ -7,8 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="BookService" />
-        <module name="LibraryService" />
         <module name="EurekaServer" />
+        <module name="LibraryService" />
+        <module name="Gateway" />
       </profile>
     </annotationProcessing>
   </component>
@@ -16,6 +17,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="BookService" options="-parameters" />
       <module name="EurekaServer" options="-parameters" />
+      <module name="Gateway" options="-parameters" />
       <module name="LibraryService" options="-parameters" />
     </option>
   </component>
