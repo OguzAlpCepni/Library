@@ -18,7 +18,7 @@ public interface BookServiceClient {
 
     @RequestMapping("/isbn/{isbn}")
     @CircuitBreaker(name = "getBookByIsbnCurcuitBreaker",fallbackMethod = "getBookFallBack")
-    public ResponseEntity<BookIdDto> getBookByIsbn(@PathVariable  String isbn);
+    public ResponseEntity<BookIdDto> getBookByIsbn(@PathVariable(value="isbn")  String isbn);
     //feign clientta gönderdigin parametre + exception parametresi alır
 
 
@@ -30,7 +30,7 @@ public interface BookServiceClient {
 
     @GetMapping("/book/{bookId}")
     @CircuitBreaker(name = "getBookByIdCurcuitBreaker",fallbackMethod = "getBookByIdFallBack")
-    public ResponseEntity<BookDto> getBookById(@PathVariable  String bookId);
+    public ResponseEntity<BookDto> getBookById(@PathVariable(value = "bookId")  String bookId);
 
     default ResponseEntity<BookDto> getBookByIdFallBack(String id,Exception exception) {
         loggger.info("Book not found by id "+ id + " returning default BookDto origin");

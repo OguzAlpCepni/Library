@@ -11,6 +11,7 @@ import com.library.libraryservice.service.abstracts.LibraryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -48,6 +49,11 @@ public class LibraryManager implements LibraryService {
         Library library = libraryRepository.findById(addBookRequest.getBookId()).orElseThrow(()->new LibraryNotFoundException("Library could not found"));
         library.getUserBook().add(bookId);
         libraryRepository.save(library);
+    }
+
+    @Override
+    public List<String> getAllLibraries() {
+        return libraryRepository.findAll().stream().map(Library::getLibraryId).collect(Collectors.toList());
     }
 
 
