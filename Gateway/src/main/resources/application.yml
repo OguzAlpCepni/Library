@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: apigateway
+  cloud:
+    gateway:
+        routes:
+          - id: BookService
+            uri: lb://BookService
+            predicates:
+              - Path=/v1/book/**
+          - id: LibraryService
+            uri: lb://LibraryService
+            predicates:
+              - Path=/v1/library/**
+        discovery:
+          locator:
+            enabled: true
+
+
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    register-with-eureka: true
+    service-url:
+      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    prefer-ip-address: true
